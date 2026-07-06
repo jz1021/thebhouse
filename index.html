@@ -79,6 +79,29 @@ body{background:#0a0a12;display:flex;justify-content:center;align-items:center;m
 .btn{padding:10px 22px;border-radius:8px;border:1px solid rgba(180,150,110,0.35);background:rgba(180,150,110,0.06);color:#c8a870;font-size:11px;cursor:pointer;letter-spacing:1px;transition:.2s;display:inline-block;text-decoration:none}
 .btn:hover{background:rgba(180,150,110,0.16)}
 .btn.primary{background:rgba(180,150,110,0.16);border-color:rgba(200,170,130,0.5)}
+
+/* ── 论坛实时吐槽 ── */
+.forum-header{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:10px;position:sticky;top:0;background:#0e0f16;z-index:5}
+.forum-header .live-dot{width:8px;height:8px;border-radius:50%;background:#e04040;animation:forumPulse 1.5s ease infinite}
+@keyframes forumPulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.forum-header .f-title{font-size:13px;color:#d8ccb8;letter-spacing:1px;font-weight:300}
+.forum-header .f-badge{margin-left:auto;font-size:9px;padding:3px 8px;border-radius:8px;background:rgba(220,60,60,0.12);color:rgba(240,120,120,0.6)}
+.forum-header .f-sub{font-size:9px;color:rgba(255,255,255,0.15);letter-spacing:1px;display:block;margin-top:2px}
+.f-post{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.03);animation:fSlideIn .4s ease both}
+.f-post.reply{margin-left:20px;padding-left:12px;border-left:2px solid rgba(200,170,130,0.25);border-bottom:none;padding-top:8px;padding-bottom:8px}
+@keyframes fSlideIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
+.f-head{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.f-av{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff}
+.f-av.a0{background:#6b8fa0}.f-av.a1{background:#a07b6b}.f-av.a2{background:#8a9e6b}.f-av.a3{background:#9b6b8a}
+.f-av.a4{background:#c08060}.f-av.a5{background:#6b8e9b}.f-av.a6{background:#a0a060}.f-av.a7{background:#806b9b}
+.f-uid{font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.5px}
+.f-uid.op{color:rgba(200,160,120,0.7)}
+.f-time{font-size:8px;color:rgba(255,255,255,0.12);margin-left:4px}
+.f-like{font-size:9px;color:rgba(255,255,255,0.15);display:flex;align-items:center;gap:3px;margin-top:4px}
+.f-like.liked{color:rgba(200,160,120,0.6)}
+.f-body{font-size:11px;color:rgba(255,255,255,0.45);line-height:1.7;letter-spacing:0.3px}
+.f-divider{text-align:center;padding:10px 0;font-size:9px;color:rgba(255,255,255,0.08);letter-spacing:2px}
+.f-views{font-size:9px;color:rgba(255,255,255,0.15);text-align:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.03);margin-bottom:8px}
 </style>
 </head>
 <body>
@@ -96,7 +119,7 @@ function AL(v){return v>=70?'❤️❤️❤️':v>=50?'❤️❤️':v>=30?'❤
 
 var DATA={
 fa:{p:{n:'你',a:26},x:{n:'李柱延',id:'jy',a:30,e:'✈️'},ms:[{id:'jy',n:'李柱延',a:30,e:'✈️',x:1},{id:'hj',n:'李贤在',a:27,e:'🩺',x:0},{id:'jb',n:'裴俊英',a:28,e:'📷',x:0},{id:'er',n:'孙英宰',a:23,e:'🏀',x:0}],fD:'<b>姜宥真</b>：外向主动，大大咧咧实则敏感，很会撒娇。笑的时候右手会攥紧杯柄。<br><br><b>徐敏荷</b>：冷静理性，话不多，气场强。不主动但很有存在感，不笑的时候像杂志模特。<br><br><b>朴瑞妍</b>：温柔文艺，说话轻声细语，容易让人有保护欲。及腰黑长直，皮肤白得几乎透明。',mt:'你们在培训上认识。他是试飞学员，你是实习乘务员。模拟舱那天，他坐你斜对面，看到你紧张到发抖，悄悄给你递来一只水。',bu:'分手是你提的。五年了，他从来不表达爱你，而他身边又有太多莺莺燕燕。聚少离多让你们的争吵越来越多，你累了。也许还是爱的，但爱他让你太累了。',ph:'THE_B_HOUSE_assets/8b511c18gy1h8vgemc76sj20xc0xcajc.jpg',lp:'我的X是一个很慢热的人\n偶尔也会冷不丁地吐槽\n\nX走路慢慢的\n说话慢慢的\n\nX玩狼人杀的时候总是傻傻相信别人的话\n并不是X不够聪明\n而是因为X是善良的人\n\nX从来不对我说谎\n即使很受欢迎\n也从来不会把这当回事\n\nX很会关心别人\n但是不喜欢邀功\n\nX的幽默不难懂\n只是需要点耐心\n\nX情绪不好的时候不会说话\n只要抱抱他就好了\n\n如果X在这里遇到谁\n希望那个人能看懂X的顺手\n也能理解他的安静',le:'X总说我记不住事\n但关于X的事\n我常常会突然想起来\n然后愣住\n\nX第一次来我家\n带了一盆薄荷\n\nX有些怕生\n给人的第一印象就像薄荷一样冰凉\n但熟悉X的人会知道\nX其实像夏天的冰块一样让人舒心\n\nX很有主见\n是那种会让人放心的人\n但在恋人面前的X\n也会像小孩子一样撒娇\n\n和X在一起\n每天都能看到不一样可爱的她\n是男朋友的幸运\n\nX不太笑\n但笑起来左边先翘\n她自己不知道\n\nX喜欢热的东西\n热汤，热咖啡\n还有活泼的、热烈的心\nX值得世界上最好、最温暖的一切'},
-ch:{p:{n:'李贞',a:24},x:{n:'裴俊英(Jacob)',id:'jb',a:27,e:'💼'},ms:[{id:'jb',n:'裴俊英(Jacob)',a:27,e:'💼',x:1},{id:'hj',n:'李贤在',a:26,e:'🪖',x:0},{id:'yh',n:'金泳勋',a:28,e:'🌐',x:0},{id:'er',n:'孙英宰(Eric)',a:25,e:'⚽',x:0}],fD:'<b>女A·律师</b>：成熟型。气场强，不卑不亢，递东西的动作像递名片。<br><br><b>女B·编剧</b>：温柔型。声音软软的，会帮人摆盘子，容易被靠近。<br><br><b>女C·外科医生</b>：成熟型。话不多但每句都精准，习惯把手机扣在床头柜上。',mt:'他是你朋友的哥哥。第一次见面在朋友家客厅——他加班回来，手里提着便利店袋子。你坐在沙发上看比赛回放，他路过时看了一眼屏幕，说“你跳得很好看。”那是第一次有人不问你“为什么做这个”，只是说你好看。',bu:'分手是他提的。他希望你能找一份“稳定”的工作——不是不喜欢，是担心你受伤，担心你练到深夜没人接。你说他不理解你，他说你太回避。最后一次吵架，他问你“你到底想要什么”，你沉默了。他说分手吧，你说了好，快得不像话。十个月后你才知道——那天晚上，他在车里坐了四个小时。',ph:'THE_B_HOUSE_assets/SaveClip.App_564259307_17974045274954379_9160089034478819477_n.jpg',lp:'Jacob是我见过最聪明的男人\n也是最贴心的男人\n\nX是我朋友的哥哥\n从小是优等生的X\n尽管工作很忙\n也注重家庭与身边的人\n\n出去吃饭\nX会记得身边的人忌口\n朋友的生日\nX也会准备好礼物提前送去\n\nX的父母也很亲切\n也许正是这样温暖的家庭\n才会培养出X一样天使般善良的人\n\n作为恋人的X 还要更加美好\n是在X的照料下\n我学会变成一个靠谱、不冷漠的人\n\n任何人靠近X\n都会明白我所说一切\n\n我真心希望X能够幸福\n比任何人都幸福',le:'我所认识的X\n既有孩童的天真烂漫\n也有作为女人的成熟与美好\n\nX对恋人非常坦率\n脱口而出的话语能让我幸福很久\n\nX是一个非常会表达爱的人\n\nX很受欢迎\n我周围所有的男生都认识X\n但X从来不会让我感觉不安全\n\nX是善良又有边界的人\n\n能成为X的恋人\n是我的幸运\n\n第一次见到X的时候\n她戴着软昵帽\n有着大大的眼睛\n\n这样的X\n是我记忆里见过最美丽的人'}};
+ch:{p:{n:'李贞',a:24},x:{n:'裴俊英(Jacob)',id:'jb',a:27,e:'💼'},ms:[{id:'jb',n:'裴俊英(Jacob)',a:27,e:'💼',x:1},{id:'hj',n:'李贤在',a:26,e:'🪖',x:0},{id:'yh',n:'金泳勋',a:28,e:'🌐',x:0},{id:'er',n:'孙英宰(Eric)',a:25,e:'⚽',x:0}],fD:'<b>女A·律师</b>：成熟型。气场强，不卑不亢，递东西的动作像递名片。<br><br><b>女B·编剧</b>：温柔型。声音软软的，会帮人摆盘子，容易被靠近。<br><br><b>女C·外科医生</b>：成熟型。话不多但每句都精准，习惯把手机扣在床头柜上。',mt:'他是你朋友的哥哥。第一次见面是高中，在朋友家客厅。他从学校回来，手里提着便利店袋子。那段时间你经常去朋友家写作业，他对你特别好，总是很温柔，满足了你小时候对哥哥的幻想。',bu:'分手是他提的。他希望你能找一份“稳定”的工作，而不是随着比赛到处飞。他说他养得起你，可他心里也清楚，你并不是一个甘心留在家里等他的人。',ph:'THE_B_HOUSE_assets/SaveClip.App_564259307_17974045274954379_9160089034478819477_n.jpg',lp:'Jacob是我见过最聪明的男人\n也是最贴心的男人\n\nX是我朋友的哥哥\n从小是优等生的X\n尽管工作很忙\n也注重家庭与身边的人\n\n出去吃饭\nX会记得身边的人忌口\n朋友的生日\nX也会准备好礼物提前送去\n\nX的父母也很亲切\n也许正是这样温暖的家庭\n才会培养出X一样天使般善良的人\n\n作为恋人的X 还要更加美好\n是在X的照料下\n我学会变成一个靠谱、不冷漠的人\n\n任何人靠近X\n都会明白我所说一切\n\n我真心希望X能够幸福\n比任何人都幸福',le:'我所认识的X\n既有孩童的天真烂漫\n也有作为女人的成熟与美好\n\nX对恋人非常坦率\n脱口而出的话语能让我幸福很久\n\nX是一个非常会表达爱的人\n\nX很受欢迎\n我周围所有的男生都认识X\n但X从来不会让我感觉不安全\n\nX是善良又有边界的人\n\n能成为X的恋人\n是我的幸运\n\n第一次见到X的时候\n她戴着软昵帽\n有着大大的眼睛\n\n这样的X\n是我记忆里见过最美丽的人'}};
 
 function iAff(){G.aff={};G.affH={};G.turn={};DATA[G.id].ms.forEach(function(m){G.aff[m.id]=m.x?40:30;G.affH[m.id]=[G.aff[m.id]];G.turn[m.id]=false;});}
 function cA(id,d){if(!G.turn[id]){G.aff[id]=Math.max(0,Math.min(100,G.aff[id]+d));G.affH[id].push(G.aff[id]);}}
@@ -139,6 +162,49 @@ function sb(t,s){var l=Q('smsLog');if(!l)return;var d=document.createElement('di
 function sn_(t){var l=Q('smsLog');if(!l)return;var d=document.createElement('div');d.className='sms-bub narr';d.innerHTML=t;l.appendChild(d);l.scrollTop=l.scrollHeight;}
 function sr_(t){var l=Q('smsLog');if(!l)return;var d=document.createElement('div');d.className='sms-report';d.innerHTML=t;l.appendChild(d);l.scrollTop=l.scrollHeight;}
 function sa(cs){var l=Q('smsLog');if(!l)return;var d=document.createElement('div');d.className='choices-wrap';cs.forEach(function(o){var b=document.createElement('div');b.className='choice-btn'+(o.p?' pick':'');b.textContent=o.l;b.onclick=o.a;d.appendChild(b);});l.appendChild(d);l.scrollTop=l.scrollHeight;}
+
+var _forumDay=0;var _forumNext=null;
+var F={
+d1:[
+{uid:'롸롸롸',av:0,time:'23:51',body:'柱延真的很看不透啊..到底是女四不是他的菜还是在紧张避嫌啊啊啊',likes:37},
+{uid:'에릭좋아',av:1,time:'23:52',body:'这个孙英宰咋这么萌！！',likes:52,liked:true},
+{uid:'눈호강',av:2,time:'23:53',body:'这季的男嘉宾对我眼睛很友好TT',likes:44},
+{uid:'현재앓이',av:3,time:'23:54',body:'李贤在这样真能找到女朋友吗。。服',likes:28},
+{uid:'ㅇㅇ',av:4,time:'23:55',body:'楼上的 女四写的挑衅 他俩不会是对抗路x吧',reply:true,likes:19},
+{uid:'분석왕',av:5,time:'23:56',body:'挑衅也有可能是李柱延吧 他一句话没说 完全忽视啊',reply:true,likes:31},
+{uid:'ㅎㅎ',av:6,time:'23:57',body:'Jacob太好人了吧 唯一帮拿箱子的绅士nim',likes:46},
+],
+d3:[
+{uid:'썸연구소',av:0,time:'23:48',body:'女四为什么要放和前任的东西啊，任谁都知道对x还有迷恋啊',likes:63},
+{uid:'지나가던',av:5,time:'23:49',body:'也有可能是想彻底做个了断吧',reply:true,likes:41},
+{uid:'ㅇㅇ',av:4,time:'23:50',body:''},
+{uid:'절대닫혀',av:7,time:'23:51',body:'jacob和女四锁了吧 她都放x的机票了 他居然还选',likes:55},
+{uid:'ㅠㅠㅠ',av:1,time:'23:52',body:'如果柱延可以先选的话，应该肯定也会选机票吧，哭',likes:38},
+{uid:'분석왕',av:5,time:'23:53',body:'他如果真心想要，完全可以提出来啊，但他没有',reply:true,likes:22},
+{uid:'입틀막',av:3,time:'23:54',body:'李柱延居然是女四的x。。前面根本没看出来',likes:89},
+{uid:'룸메이트',av:6,time:'23:55',body:'你不觉得公共区域只有他对女四很冷淡吗',reply:true,likes:47},
+{uid:'ㅇㅇ',av:4,time:'23:56',body:'对对对 他对女四一句话都没说过',reply:true,likes:35},
+{uid:'열받아',av:0,time:'23:57',body:'好渣。。女四独美',likes:71},
+]};
+function showForum(day,fn){
+  var ps=F['d'+day];if(!ps){fn();return;}
+  var title='EP.'+day+' 实时讨论楼';
+  var views=day===1?'3,284':'5,617';
+  var h='<div class="view"><div class="forum-header"><div class="live-dot"></div><div><span class="f-title">'+title+'</span><span class="f-sub">换乘恋爱4 · THE B HOUSE</span></div><span class="f-badge">LIVE</span></div><div style="padding:10px 14px"><div class="f-views">📺 实时讨论中 · '+views+' 次浏览 · '+ps.length+' 条评论</div>';
+  for(var i=0;i<ps.length;i++){
+    var p=ps[i];
+    if(!p.body){h+='<div class="f-divider">— '+(i+1)+' —</div>';continue;}
+    var liked=p.liked?' liked':'';
+    h+='<div class="f-post'+(p.reply?' reply':'')+'" style="animation-delay:'+(i*0.05)+'s">';
+    h+='<div class="f-head"><div class="f-av a'+p.av+'">'+p.uid[0]+'</div><span class="f-uid'+(i===0&&!p.reply?' op':'')+'">'+p.uid+'</span>';
+    if(i===0&&!p.reply)h+='<span style="font-size:8px;color:rgba(200,160,120,0.4)">楼主</span>';
+    h+='<span class="f-time">'+p.time+'</span></div>';
+    h+='<div class="f-body">'+p.body+'</div>';
+    h+='<div class="f-like'+liked+'">'+(p.liked?'❤️':'🤍')+' '+p.likes+'</div></div>';
+  }
+  h+='<div class="tap-hint" onclick="('+fn.toString()+')()">▼ 点击继续游戏</div></div></div>';
+  V(h);
+}
 
 // SCREENS
 function showRules(){
@@ -183,39 +249,33 @@ function d1a_s(to,msg){G.meTo[1]=to;sV('匿名短信','DAY 1 · 深夜');
   if(to==='jb'){cA('jb',5);cA('jy',-3);}else if(to==='hj')cA('hj',5);else if(to==='er')cA('er',5);
   sb(msg,'her');sn_('发送成功。<br><br>你把手机翻了个面，扣在枕边。<br><br>窗外，一架飞机正在降落。起落架灯在夜空中划出两道平行线。');
   G.exTo[1]='朴瑞妍';sr_('⚡ 前任报告 ⚡<br>你的前任（李柱延）今晚将短信发给了<br><b>朴瑞妍</b>');
-  aPop(gC(),function(){tCheck();sa([{l:'DAY 1 结束 · 进入 DAY 2',a:function(){DT(2,d2);},p:true}]);});}
+  aPop(gC(),function(){tCheck();showForum(1,function(){DT(2,d2);});});}
 
 // === CHEER DAY 1 ===
 function d1c(){
   CP('✦ 晨间镜头 ✦',[
     '你选了二楼靠角落的房间。下楼时，厨房里已经有人。<br><br>裴俊英站在料理台前煎蛋，听见脚步声回头——看见是你，锅铲在半空停了一秒。“早。”声音很轻，像怕惊扰什么。',
     DATA[G.id].fD,
-    '“李贞对吧？你比照片还可爱！我是Eric，足球那个——你饿不饿？Jacob哥煎蛋手艺一般，我给你做三明治？”Eric从客厅沙发弹起来。裴俊英的背影僵了一瞬。<br><br>金泳勋倚在餐厅门框上，端着咖啡，似笑非笑。李贤在最后一个下楼，径直走向冰箱。女A从阳台进来，和李贤在之间像在试探什么。'
+    '你走进客厅，Eric从客厅沙发弹起来问候，<br>“早上好，我是Eric！厨房里是Jacob哥在煎蛋，我们一会做三明治吃！”<br>他洋溢的热情让裴俊英的背影僵了一瞬。<br><br>金泳勋倚在餐厅门框上，似笑非笑，举着咖啡向你致意。<br>李贤在则从客厅走向冰箱，女A站在他旁边，二人之前似乎在试探什么。'
   ],d1c_g);}
 function d1c_g(){
-  C_('✦ 公共区域 · 破冰游戏 ✦','“我们来玩个破冰游戏吧。每人说一件自己做过最疯狂的事。”金泳勋放下咖啡杯。<br><br>“我先！”Eric举手，“我在世界杯预选赛进球后，跑到观众席亲了一个陌生球迷——”“那是骚扰。”女C头也不抬。“她后来成了我粉丝站站长……”<br><br>女A放下咖啡杯：“我打过一场持续17小时的庭审，对方律师中途哭了。”李贤在嘴角扯了一下：“17小时？那对方确实该哭。”<br><br>女B声音软软的，看向裴俊英：“我写剧本把自己写哭了……Jacob哥你煎蛋的样子，像极了我写的男主角。”裴俊英耳朵红了。<br><br>轮到你了。所有人的目光看过来。',null,[{l:'A. “我没什么疯狂的。”低头喝果汁。',a:"d1c_p('av')"},{l:'B. 说一场临时救场的比赛经历。',a:"d1c_p('sh')"},{l:'C. “最疯狂的事……大概是曾经以为有人永远不会离开吧。”',a:"d1c_p('ex')"}]);}
+  C_('✦ 公共区域 · 破冰游戏 ✦','“我们来玩个破冰游戏吧，”金泳勋放下咖啡杯。<br>“每人说一件自己做过最疯狂的事。”<br><br>“我先！”Eric举手，“我在世界杯预选赛进球后，跑到观众席亲了一个陌生球迷——”<br>“那是骚扰。”女C头也不抬。<br>“可她后来成了我粉丝站站长……”Eric挠挠头。<br><br>女A吸一口饮料：“以前我在国外上学，房东临时退租，只好在街头流浪了两天。”<br><br>女B声音软软的，“我曾经一个人去了内乱中的国家支教。”<br><br>轮到你了。所有人的目光看过来。',null,[{l:'A. “我没什么疯狂的。”低头喝果汁。',a:"d1c_p('av')"},{l:'B. 说一场临时救场的比赛经历。',a:"d1c_p('sh')"}]);}
 function d1c_p(t){
   if(t==='ex'){cA('jb',5);R_('💔','你看向裴俊英。全桌安静了一秒——他的锅铲停在半空。Eric警觉地来回看，金泳勋的目光在你和他之间微妙地停顿。<br><br>裴俊英低下头，拇指无意识地摩挲杯沿。',d1c_rk);}
-  else if(t==='sh'){cA('er',3);R_('📣','你说了那场临时救场的比赛。Eric眼睛发亮：“太酷了！”裴俊英终于抬头看你——他知道你说的是哪场比赛。那天他在加班，没去。<br><br>你注意到他说“太酷了”的时候，裴俊英的嘴角动了一下。',d1c_rk);}
-  else{R_('😶','你低头喝果汁，声音轻得像在自言自语。果汁是橙汁，酸涩的。<br><br>Eric愣了一下。裴俊英的锅铲在盘子上刮出轻响——在一起两年，他太熟悉这种“我没事”的语气。<br><br>金泳勋的目光在你身上停了比平时久。李贤在经过你身后时，影子在你肩上停了一瞬。',d1c_rk);}
+  else if(t==='sh'){cA('er',3);R_('📣','你隐去了自己的职业，讲起曾经为了学一个舞蹈两天没吃饭没睡觉地练。<br><br>Eric眼睛发亮：“太酷了！”<br><br>裴俊英默默垂下了眼睫——他知道是哪场比赛。<br>那天他在加班，没去成。',d1c_rk);}
+  else{R_('😶','除了裴俊英，大家都被你的坦率噎到了。<br><br>金泳勋轻轻笑出了声，接过话头帮你打圆场。<br><br>李贤在也很捧场地没再提这茬。',d1c_rk);}
 }
 function d1c_rk(){C_('✦ 心动排名 ✦','节目组通知：每位嘉宾写下对四位异性的心动顺序，投入玄关信箱。你捏着笔，盯着卡片。',function(){d1c_kt();});}
 function d1c_kt(){
-  C_('✦ 傍晚 · 厨房 ✦','你回了房间。傍晚下楼拿水，在厨房撞见裴俊英。夕阳把他的轮廓削得很薄。<br><br>“……你今天，还是老样子。”不是指责，是陈述。<br><br>“我煎了蛋，在保温箱里。你早上没吃多少。”',null,[{l:'A. 沉默，拿一瓶水就走。',a:"d1c_kp('si')"},{l:'B. “谢谢。”然后拿蛋走。',a:"d1c_kp('th')"},{l:'C. “你为什么来这个节目？”',a:"d1c_kp('wh')"}]);}
+  C_('✦ 傍晚 · 厨房 ✦','你回了房间。傍晚下楼拿水，在厨房撞见裴俊英。<br>夕阳把他的轮廓削得很薄。<br><br>“……你好像瘦了点，”他总是这样润物无声地关心你。<br>“冰箱里有没放肉的炸酱面。”',null,[{l:'A. 沉默，拿一瓶水就走。',a:"d1c_kp('si')"},{l:'B. “谢谢。”然后打开冰箱。',a:"d1c_kp('th')"},{l:'C. 含泪，“欧巴是来认识新人的么？”',a:"d1c_kp('wh')"}]);}
 function d1c_kp(t){
-  if(t==='wh'){cA('jb',8);R_('💬','“你为什么来这个节目？”<br><br>他愣了一下。夕阳的光把他的睫毛照成金色。<br><br>“我来这个节目，”他说，声音低下去，“是因为分手那天你说‘如果当初不是在你家认识的就好了’。我想告诉你——我从来没那么想过。”<br><br>你的手指掐进掌心。楼下传来别人的笑声，像从另一个世界传来。你逃回了房间。',d1c_ex);}
-  else if(t==='th'){cA('jb',5);R_('🍳','“……谢谢。”<br><br>声音轻得像羽毛落地。你打开保温箱，煎蛋边缘煎得微焦——他知道你喜欢这种口感。<br><br>“李贞。”他叫你的全名，像从前那样。你停下了，但没回头。',d1c_ex);}
-  else{cA('jb',-3);R_('🚪','你沉默，拿了一瓶水就走。经过他身边时，袖子擦过他的手背。<br><br>他站在原地，锅铲在盘子上刮出一声轻响。<br><br>你关上门之后，他在厨房里站了很久。保温箱的灯灭了，他又重新按亮。',d1c_ex);}
+  if(t==='wh'){cA('jb',8);R_('💬','“欧巴是来认识新人的么？”<br><br>他张了张口，夕阳的光把他的睫毛照成金色。<br><br>“李贞，如果你做这个职业，”他声音低下去，<br>“我希望上这个节目能对你有帮助。”<br><br>你的手指掐进掌心。楼下传来别人的笑声，像从另一个世界传来。<br>你逃回了房间。',function(){NT(d1c_sms);});}
+  else if(t==='th'){cA('jb',5);R_('🍳','“……谢谢。”<br><br>声音轻得像羽毛落地。<br><br>你打开冰箱，取出面放进微波炉。<br><br>他看着你忙碌的背影没再说什么，转身走了。',function(){NT(d1c_sms);});}
+  else{cA('jb',-3);R_('🚪','你沉默，拿了一瓶水就走。经过他身边时，袖子擦过他的手背。<br><br>他站在原地，铁筷在盘子上刮出一声轻响。<br><br>你关上门之后，他在厨房里站了很久。',function(){NT(d1c_sms);});}
 }
-function d1c_ex(){C_('✦ 深夜 ✦','你回到房间。窗外传来楼下Eric练习颠球的声音，还有姜宥真的笑声。手机上弹出节目组通知——<br><br><em>前任报告：裴俊英今晚将短信发给了女NPC B</em><br><br>他没有选择你。',function(){NT(d1c_sms);});}
-function d1c_sms(){
-  sV('匿名短信','DAY 1 · 深夜');ss('✦ 你必须发出一条短信 ✦');
-  G.exTo[1]='女NPC B';sr_('⚡ 前任报告 ⚡<br>你的前任（裴俊英）今晚将短信发给了<br><b>女NPC B</b>');sn_('他没有选择你。');
-  sa([{l:'A. 发给裴俊英：今天保温箱里的蛋，还是老样子。',a:function(){d1c_s('jb','今天保温箱里的蛋，还是老样子。')}},{l:'B. 发给李贤在：燕麦奶的事，其实你可以直接问她要回来。',a:function(){d1c_s('hj','燕麦奶的事，其实你可以直接问她要回来。')}},{l:'C. 发给Eric：颠球教得不错，但别对每个人都那么热情。',a:function(){d1c_s('er','颠球教得不错，但别对每个人都那么热情。')}},{l:'D. 发给金泳勋：你今天说的那个翻译事故，是真的吗？',a:function(){d1c_s('yh','你今天说的那个翻译事故，是真的吗？')}}]);}
-function d1c_s(to,msg){G.meTo[1]=to;sV('匿名短信','DAY 1 · 深夜');
-  if(to==='jb')cA('jb',5);else if(to==='hj')cA('hj',8);else if(to==='er')cA('er',5);else cA('yh',3);
-  sb(msg,'her');sn_('发送成功。<br><br>你把手机翻了个面，扣在枕边。');
-  aPop(gC(),function(){tCheck();sa([{l:'DAY 1 结束 · 进入 DAY 2',a:function(){DT(2,d2);},p:true}]);});}
+function d1c_sms(){sV("匿名短信","DAY 1 · 深夜");sb("声音也很美。","him");ss("— 你收到了 1 条 —");G.exTo[1]="女NPC B";sr_("✦ 前任报告 ✦<br>你的前任（裴俊英）今晚将短信发给了<br><b>女NPC B</b>");sn_("他没有选择你。");sa([{l:"A. 发给裴俊英：我现在吃肉了。",a:function(){d1c_s("jb","我现在吃肉了。")}},{l:"B. 发给李贤在：明天见。",a:function(){d1c_s("hj","明天见。")}},{l:"C. 发给Eric：艾力克kkk",a:function(){d1c_s("er","艾力克kkk")}},{l:"D. 发给金泳勋：ฅ^•ﻌ•^ฅ",a:function(){d1c_s("yh","ฅ^•ﻌ•^ฅ")}}]);}
+
+function d1c_s(to,msg){G.meTo[1]=to;sV("匿名短信","DAY 1 · 深夜");if(to==="jb")cA("jb",5);else if(to==="hj")cA("hj",5);else if(to==="er")cA("er",5);else cA("yh",5);sb(msg,"her");sn_("发送成功。<br><br>你走到无人的露台，远处楼宇的灯火明明灭灭，城市的噪音变成一种嗡鸣。");aPop(gC(),function(){tCheck();sa([{l:"DAY 1 结束 · 进入 DAY 2",a:function(){DT(2,d2);},p:true}]);});}
 
 // === DAY 2 ===
 function d2(){G.day=2;if(G.id==='fa')d2a();else d2c();}
@@ -250,25 +310,20 @@ function d2a_s(to,msg){G.meTo[2]=to;sV('匿名短信','DAY 2 · 深夜');
 
 function d2c(){
   CP('✦ 晨间镜头 ✦',[
-    '第二天。回避的壳更厚了，但壳外的声音更响了。<br><br>“早！李贞！草莓奶昔——”“我不喝甜的。”Eric愣住，然后笑得更亮：“那我去换无糖的！”',
-    '金泳勋端着咖啡侧身避开：“……早。昨晚睡得好吗？”你不知道他在问什么。<br><br>裴俊英从二楼下来，西装外套。经过你身边时脚步顿了一下。<br><br>李贤在最后一个出现，径直走向冰箱。转身时目光越过冰箱门上方，直直看向你——嘴角动了一下，他认出昨晚的短信了。'
+    '第二天。回避的壳更厚了，但壳外的声音更响了。<br><br>“早！李贞！草莓奶昔——”<br>“谢谢呀，我不喝甜的。”<br>Eric没犹豫：“那我再做杯无糖的！”<br><br>另一边的李贤在感叹道，“难得有人跟我一样挑食了。”<br>金泳勋吐槽他，“昨天看你饭量像饭桶。”<br><br>裴俊英从二楼下来，穿着白衬衫配工牌，经过你身边时脚步顿了一下。'
   ],d2c_t);}
 function d2c_t(){
-  C_('✦ 午餐任务 · 厨房 ✦','抽签结果：裴俊英 & 你。他系上围裙。你们在一起两年，你知道他切菜时左手无名指会蜷起来。<br><br>“你想做什么？”他没看你，在洗蔬菜。<br><br>客厅传来动静——女A把燕麦奶往李贤在手边推。他的目光越过她肩膀，看向你。你默默抿嘴。刀在砧板上敲出一声脆响。',null,[{l:'A. “随便。”',a:"d2c_ck('si')"},{l:'B. “……蛋包饭吧。你以前做的那种。”',a:"d2c_ck('me')",p:true},{l:'C. “欧巴最想吃什么？”',a:"d2c_ck('op')"}]);}
+  C_("✦ 午餐任务 · 厨房 ✦","抽签结果：裴俊英 & 你。<br><br>他系上围裙。你们在一起两年，你知道他切菜时左手无名指会蜷起来。<br><br>客厅传来动静——金泳勋和女A准备出门去超市。<br>Eric跑来你身旁帮忙。你默默抿嘴。刀在砧板上敲出一声钝响。<br><br>“你想做什么？”他没看你，在洗蔬菜。",null,[{l:"A. “随便。”",a:"d2c_ck('si')"},{l:"B. “……蛋包饭吧。”",a:"d2c_ck('me')",p:true},{l:"C. 看向一旁，“Eric你最想吃什么？”",a:"d2c_ck('op')"}]);}
 function d2c_ck(t){
-  if(t==='op'){cA('jb',10);R_('💕','“欧巴最想吃什么？”<br><br>话出口的瞬间，你们俩都僵住了。<br><br><em>欧巴。</em>这个称呼像一颗石子投进结冰的湖面。在一起两年，你叫他欧巴，尤其是在他加班回来给你盖毯子的时候。<br><br>他的耳尖红了。低头洗蔬菜，水流声盖过了声音：“……蛋包饭吧。你以前说，我做的比外面好吃。”<br><br>他笑了——很浅，但真实。这是进这间屋子以来，他第一次笑。',d2c_ex);}
-  else if(t==='me'){cA('jb',5);R_('🍳','“……蛋包饭吧。你以前做的那种。”<br><br>他的刀停在砧板上。然后继续切，刀速慢了一拍。他没抬头，但你看到他嘴角动了一下。<br><br>你记得。他也记得。你们都没忘。',d2c_ex);}
-  else{cA('jb',-3);R_('😶','“随便。”<br><br>他点了点头，没再问。砧板上的洋葱被切得细碎，刀速均匀。你注意到他的左手无名指蜷起来——两年了，这个习惯还是在。<br><br>他什么都没说。但同样什么都没说，五年前是默契，现在是沉默。',d2c_ex);}
+  if(t==='op'){cA('jb',10);R_('💕','Eric仿佛没察觉到气氛的微妙，<br>开心地点菜，“我要吃LA排骨！”<br><br>Jacob看着他无奈地笑了，举手投降：<br>“太难了，我不会。”',d2c_ex);}
+  else if(t==='me'){cA('jb',5);R_('🍳','“蛋包饭...吗？”<br><br>他的刀停在砧板上。然后继续切，刀速慢了一拍。<br>你记得。他也记得——<br>曾经他为你做过最多的菜就是蛋包饭。',d2c_ex);}
+  else{cA('jb',-3);R_('😶','“随便。”<br><br>他点了点头，没再问。砧板上的洋葱被切得细碎，刀速均匀。<br><br>你心里默默期望，也许他会做你爱吃的菜。',d2c_ex);}
 }
 function d2c_ex(){
-  C_('✦ EX 事件 · 前任回忆夜 ✦','节目组把你带到小黑屋，戴上耳机。三段音频。<br><br><em>第一段：</em>“欧巴，我今天比赛赢了！”“……嗯。你跳得很好看。”“你怎么看到的？”“……我请假了。观众席最后一排。”<br><br><em>第二段：</em>“李贞，我们谈谈。”“没什么好谈的。”“我不是要你换——”“你想让我稳定。我知道了。”<br><br><em>第三段：</em>“分手吧。”“……好。”“你就这么……好？”<br><br>你摘下耳机，脸上全是泪。<br><br>回房间时在走廊撞见裴俊英。他的眼睛也是红的。两米。',null,[{l:'A. 绕过他，回房间。',a:"R_('🚪','你低下头，从他身边走过。袖子擦过他的手背。<br><br>他站在原地。你没回头，所以没看到——他的手在口袋里攥紧又松开。<br><br>房间门关上。走廊灯灭了。',d2c_sms2)"},{l:'B. “欧巴……对不起。”',a:"d2c_op()",p:true}]);}
-function d2c_op(){cA('jb',8);R_('💧','“欧巴……对不起。”<br><br>他的肩膀塌下去。走过来，停在你一步之外——这个距离，他能闻到你的洗发水，你能看见他睫毛上的湿意。<br><br>“……为什么道歉？”<br><br>“比赛那次。分手那次。我都没问。我一直在回避。”<br><br>“你现在问了。晚了十个月。”<br><br>“我知道。”<br><br>他笑了一下，不是开心的笑。然后退后一步，给你让出路。',d2c_sms2);}
+  C_("✦ EX 事件 · 前任回忆夜 ✦","节目组把你带到小黑屋，戴上耳机。三段音频。<br><br><em>第一段：</em>“欧巴，我今天比赛赢了！”“……嗯。你跳得很好看。”“你怎么看到的？”“……我请假了。观众席最后一排。”<br><br><em>第二段：</em>“今天我是世界上最幸福的！”“为什么呀”“因为我有世界上最好的欧巴！”<br><br><em>第三段：</em>“李贞，我们谈谈。”“没什么好谈的。”“我不是要你改——”“行了！你别说了！”<br><br>你摘下耳机，脸上全是泪。<br><br>回房间时你在走廊远远看到裴俊英的身影。",null,[{l:"A. 绕过他，回房间。",a:"R_('🚪','你低下头，从他身边走过。袖子擦过他的手背。<br><br>他站在原地。你没回头，所以没看到——他的手在口袋里攥紧又松开。<br><br>房间门关上。走廊灯灭了。',d2c_sms2)"},{l:"B. “欧巴……对不起。”",a:"d2c_op()",p:true}]);}
+function d2c_op(){cA("jb",8);R_("💧","“欧巴……对不起。”<br><br>他的肩膀塌下去，走到你一步之外。<br>“……为什么道歉？”<br><br>你看着他，这个距离，你能闻到他身上久违的洗发水味，能看见他睫毛上的湿意。<br><br>你摇摇头，没说话，泪却止不住流。<br><br>他长叹了口气，伸手抱住了你，像安慰一个婴儿般拍了拍。<br>你知道，在他面前你永远长不大。",d2c_sms2);}
 function d2c_sms2(){NT(d2c_sms);}
-function d2c_sms(){
-  sV('匿名短信','DAY 2 · 深夜');ss('✦ 你必须发出一条短信 ✦');
-  G.exTo[2]='女NPC B';sr_('⚡ 前任报告 ⚡<br>你的前任（裴俊英）今晚将短信发给了<br><b>女NPC B</b>');
-  sn_('那条短信是：“你写的剧本，主角最后幸福吗？”<br><br>女B读了三遍，把结局改成了开放式。');
-  sa([{l:'A. 发给裴俊英：今天也加班吗？',a:function(){d2c_s('jb','今天也加班吗？')}},{l:'B. 发给李贤在：明天七点，健身房见。',a:function(){d2c_s('hj','明天七点，健身房见。')}},{l:'C. 发给Eric：友谊赛，我会去。',a:function(){d2c_s('er','友谊赛，我会去。')}}]);}
+function d2c_sms(){sV("匿名短信","DAY 2 · 深夜");ss("✦ 你必须发出一条短信 ✦");sb("你不会可乐也喝无糖的吧？","him");sb("我明天有空。","him");ss("— 你收到了 2 条 —");G.exTo[2]="女NPC B";sr_("✦ 前任报告 ✦<br>你的前任（裴俊英）今晚将短信发给了<br><b>女NPC B</b>");sn_("裴俊英..难道被困在回忆里的只有我一个人吗..？");sa([{l:"A. 发给裴俊英：别加班 早点睡吧",a:function(){d2c_s("jb","别加班 早点睡吧")}},{l:"B. 发给李贤在：明早七点，健身房见",a:function(){d2c_s("hj","明早七点，健身房见")}},{l:"C. 发给Eric：我看过你踢球哦",a:function(){d2c_s("er","我看过你踢球哦")}},{l:"D. 发给金泳勋：遇见你让我很开心",a:function(){d2c_s("yh","遇见你让我很开心")}}]);}
 function d2c_s(to,msg){G.meTo[2]=to;sV('匿名短信','DAY 2 · 深夜');
   if(to==='jb')cA('jb',8);else if(to==='hj')cA('hj',8);else cA('er',8);
   sb(msg,'her');sn_('发送成功。<br><br>你把手机翻了个面，扣在枕边。');
@@ -306,48 +361,50 @@ function d3a_sms(){
 function d3a_s(to,msg){G.meTo[3]=to;sV('匿名短信','DAY 3 · 深夜');
   if(to==='jy')cA('jy',5);else if(to==='jb')cA('jb',5);else cA('hj',5);
   sb(msg,'her');sn_('发送成功。<br><br>泪水蜿蜿蜒蜒顺着你的眼角，沾湿枕头。<br><br>看来他是铁了心不想复合。虽然难过，但我也不是舔狗。他不主动，我就放下。');
-  aPop(gC(),function(){tCheck();sa([{l:'DAY 3 结束 · 进入 DAY 4',a:function(){DT(4,d4);},p:true}]);});}
+  aPop(gC(),function(){tCheck();showForum(3,function(){DT(4,d4);});});}
 
 function d3c(){
   CP("✦ 晨间镜头 ✦",[
-    "第三天。职业公布日。<br><br>你下楼时，Eric正在客厅做瑜伽——姿势很丑，但很努力。看见你他立刻弹起来：'李贞！昨晚短信——'他停住，因为你眼下有青黑。'……你没睡好吗？'",
-    "裴俊英从厨房出来，端着两杯咖啡。把其中一杯放在桌上——不是给你，是给正好下楼的编剧女B。'谢谢Jacob欧巴~'她笑得温柔，目光却飘向你。裴俊英没看你，转身回了厨房。<br><br>李贤在从健身房出来，头发还湿着。看了你一眼，嘴角动了一下，没说话。金泳勋坐在沙发上看新闻，目光越过平板边缘，在你和李贤在之间扫了一圈。",
-    "早餐时，节目组宣布：今晚公布职业。<br><br>'在那之前——'女A晃着咖啡杯，'我们来玩个猜职业的游戏吧。'<br><br>女C合上笔记本：'我拿过手术刀。''医生！'Eric举手。'外科医生。'金泳勋补充。<br><br>裴俊英沉默了一下：'……我在一栋楼里，每天和很多人开会，但没人知道我在做什么。''间谍？'Eric瞎猜。'公务员？'女B说。裴俊英摇头。<br><br>李贤在忽然开口：'我杀过人。'全桌安静。他嘴角带着笑：'合法的。<em>退役特种兵。</em>'"
+    "你下楼时，金泳勋正在客厅整理昨晚的垃圾。<br>看见你，他微笑了一下：“李贞——昨晚睡得好吗？”<br>你言不由衷地点点头。<br>他却笑得更温柔，指了指你眼下有青黑。<br><br>你啊的一声，跑去化妆间补遮瑕。",
+    "再下楼，裴俊英正好从厨房出来，端着两杯咖啡。他把其中一杯放在桌上，却给了编剧女B。<br>“谢谢Jacob欧巴~”她笑得很甜，可那种幸福刺痛了你。<br>曾经你也是安心被他照顾的那个。<br><br>李贤在从健身房出来，额前的湿发有些自来卷。<br>他拍了拍尴尬立在客厅的你，“走，今天欧巴带你出去吃。”",
+    "出门时，节目组叫住了你们：现在公布职业。<br><br>“我给点提示，”女C晃着咖啡杯，“要握刀子哦。”<br>Eric举手：“医生！”<br><br>裴俊英沉默了一下：“……我在一栋楼里，每天和很多人开会。”<br>“公务员？”金泳勋猜测。裴俊英摇头，“在三星工作。”<br><br>接下来，你发现李贤在居然是退役特种部队成员，曾获得总统特别表彰。<br>金泳勋则是高级商务翻译官，精通韩英西班牙三语。<br>至于Eric的职业，你早已知道——他是职业足球运动员，你曾去过他的主队比赛表演。"
   ],d3c_gp);}
-function d3c_gp(){
-  C_("✦ 公共区域 ✦","李贤在的话让全桌安静了。他看向你，像在等你的反应。",null,[
-    {l:'A. 低头喝果汁，不参与。',a:"d3c_h('av')"},{l:'B. ……那很累吧。',a:"d3c_h('ca')"},{l:'C. 看向裴俊英：没人知道你在做什么，那你快乐吗？',a:"d3c_h('sh')"}]);}
-function d3c_h(t){
-  if(t==='ca'){cA('hj',8);R_('🪖','……那很累吧。<br><br>声音不大，但李贤在听见了。他捏着叉子的手顿住——不是害羞，是被戳中的狼狈。他习惯了用肌肉武装自己，没人问过他累不累。<br><br>……你懂什么。他低声说，但不是嘲讽，是防御。<br><br>女A的目光在你和李贤在之间来回。裴俊英看着你——他记得，你以前也是这样，对陌生人温柔，对亲近的人回避。',d3c_g);}
-  else if(t==='sh'){cA('jb',5);R_('💼','你看向裴俊英：没人知道你在做什么，那你快乐吗？<br><br>他的咖啡杯停在半空。他看了你很久——那眼神里有十个月的沉默。<br><br>……以前快乐。他说，下班的时候，有人等我。<br><br>全桌安静。女B看着裴俊英看你的眼神，手指在杯沿上停了很久。李贤在的目光在你和他之间扫了一圈。',d3c_g);}
-  else{R_('😶','你低头喝果汁，没参与。李贤在的目光在你身上停了一秒——你在回避，他看得出来。然后他移开视线，看向女A。女A正看着他，嘴角带笑。',d3c_g);}
-}
+function d3c_gp(){d3c_g();}
+function d3c_h(t){d3c_g();}
 function d3c_g(){
-  C_("✦ 1对1 · 健身房 ✦","下午，你去了健身房。李贤在果然在。他背对着门，正在举铁，黑色背心被汗浸透。你站在门口，没进去。<br><br>他通过镜子看见了你。动作停了一秒，然后继续举——但节奏乱了。<br><br>你靠在门框上。……来看英雄举铁？他终于开口。放下杠铃，转身，汗水从下巴滴到地板上。朝你走过来，停在你半米外。",null,[
-    {l:'A. 沉默，低头看地板。',a:"d3c_gr('av')"},{l:'B. 我不知道回什么。',a:"d3c_gr('ho')"},{l:'C. 欧巴，其实我也每天健身的。明天会见到你吗？',a:"d3c_gr('op')"}]);}
+  C_("““✦ 1对1 · 健身房 ✦””","下午，你去了健身房，李贤在背对着门正在举铁。<br>他的黑色背心被汗浸透，勾勒出有型的肌肉线条。<br><br>李贤在从镜子看见了你，他放下杠铃，转身。<br>“来看英雄举铁？”<br><br>你发现李贤在总有办法让你又无语又好笑。",null,[{l:"A. 不理他。",a:"d3c_gr('av')"},{l:"B. 挑衅他，没看到英雄啊。",a:"d3c_gr('ho')"},{l:"C. 调戏他，看来英雄大的不只气量哦",a:"d3c_gr('op')"}]);}
 function d3c_gr(t){
   if(t==='op'){cA('hj',10);R_('💪','欧巴，其实我也每天健身的。李贤在的瞳孔缩了一下。<br><br>明天会见到你吗？你问——然后转身，没等他回答。<br><br>李贤在站在原地。汗水滴进眼睛里，他抬手擦了一把，嘴角却往上扯。<em>她在约我。</em>用最轻的话下最重的钩。',d3c_er);}
   else if(t==='ho'){cA('hj',5);R_('💬','我不知道回什么。<br><br>他愣了一下。然后笑——不是挑衅的笑，是某种被诚实打动的笑。<br><br>那就别回。他说，明天七点。你来，或者不来。我都在这。',d3c_er);}
   else{R_('🚪','你沉默，低头看地板。他等了你很久——然后退后一步。<br><br>那就当我没问。他转身回去举铁。杠铃砸在地上的声音比之前重。',d3c_er);}
 }
-function d3c_er(){
-  C_("✦ 走廊 · Eric ✦","健身房外传来脚步声。Eric的声音由远及近：'李贞？你在——'他停在走廊拐角，看见你和李贤在的距离，声音卡住了。<br><br>……啊。你们在忙啊。<br><br>他没走。靠在墙上，手指绞着衣角，像只被主人遗忘在门外的狗。<br><br>你转身——看见他眼眶又红了，但这次不是因为洋葱。",null,[
-    {l:'A. 从他身边走过，回房间。',a:"R_('🚶','你从他身边走过。他的手指从衣角上松开。<br><br>走廊里只剩下Eric一个人。他站了很久，然后对着墙说了一句——没事。她只是没看到我。<br><br>然后他去厨房，又开始练颠球。',d3c_rk)"},{l:'B. 伸手拍拍他肩膀。',a:"d3c_eb()"},{l:'C. 你比赛的时候……我想去加油。',a:"d3c_ec()"}]);}
-function d3c_eb(){cA('er',3);R_('🐱','你伸手，轻轻拍了拍他肩膀。然后收回。<br><br>Eric愣了一秒，然后笑了，眼睛弯成月牙。……我会加油的！为了你！他转身跑走，背影雀跃得像只终于得到抚摸的金毛。',d3c_rk);}
-function d3c_ec(){cA('er',8);R_('⚽','你比赛的时候……我想去加油。<br><br>Eric的眼睛从阴转晴只用了一秒——像只被主人摸头的金毛，尾巴摇得快要起飞：真的？！我下周有场友谊赛！给你留最好的位置！<br><br>他冲过来——想抱你，又刹住。手悬在半空：……可以抱一下吗？<br><br>你伸手，轻轻拍了他肩膀一下。他笑了，像得到了全世界。',d3c_rk);}
+function d3c_gr(t){
+  var txt="";
+  if(t==="op"){cA("hj",10);txt="李贤在还没来得及回应，健身房外传来脚步声。<br>Eric的声音由远及近：“李贞？你一会——”<br>他停在走廊拐角，看见你和李贤在的距离，声音卡住了。<br><br>他眼睛看着你，像只被主人遗忘在门外的狗。";}
+  else if(t==="ho"){cA("hj",5);txt="李贤在还没来得及回应，健身房外传来脚步声。<br>Eric的声音由远及近：“李贞？你一会——”<br>他停在走廊拐角，看见你和李贤在的距离，声音卡住了。<br><br>他眼睛看着你，像只被主人遗忘在门外的狗。";}
+  else{txt="李贤在还没来得及回应，健身房外传来脚步声。<br>Eric的声音由远及近：“李贞？你一会——”<br>他停在走廊拐角，看见你和李贤在的距离，声音卡住了。<br><br>他眼睛看着你，像只被主人遗忘在门外的狗。";}
+  C_("““✦ 走廊 · Eric ✦””",txt,null,[
+    {l:"A. 笑笑，从他身边走过，回房间。",a:"d3c_er_pick('av')"},
+    {l:"B. 问他怎么了，有事吗？",a:"d3c_er_pick('ho')"},
+    {l:"C. 早就想说了，之后你比赛记得邀请我去加油啊！",a:"d3c_er_pick('op')"}
+  ]);}
+
+function d3c_er_pick(t){
+  var txt="";
+  var ic="";
+  if(t==="ho"){cA("er",3);txt="你走上前轻轻拍了拍他肩膀，“怎么了，有事吗？”<br><br>Eric眼睛弯成月牙，没事儿！我就想问问你要不要去玩飞盘。<br>你点点头，他转身跑走，背影雀跃得像只终于得到抚摸的金毛。";ic="🐱";}
+  else if(t==="op"){cA("er",8);txt="Eric愣了一秒，“没问题，包在我身上！”<br>他看着你认真说，“幸运女神如果来，我肯定会赢的。”<br><br>他的眼神让你终于明白啦啦队存在的意义。";ic="⚽";}
+  else{txt="你从他身边走过。他的手指失落地从紧攥的衣角松开。<br><br>走廊里只剩下Eric一个人，李贤在转过身继续举铁。";ic="🚶";}
+  if(ic)R_(ic,txt,d3c_rk);
+  else R_("🚶",txt,d3c_rk);
+}
 function d3c_rk(){
-  C_("✦ 心动排名 ✦","节目组通知：第二轮心动排名。你捏着笔，盯着卡片。<br><br>你没注意到——裴俊英站在二楼楼梯口，手里端着一杯凉掉的咖啡。他看见了全部。你叫李贤在'欧巴'。你约他明天见。你拍Eric的肩膀。<br><br>他转身回房间。咖啡倒进洗手池，黑色的液体打着旋消失。",d3c_j);}
-function d3c_j(){
-  C_("✦ 职业公布 ✦","晚上，所有人聚集在客厅。节目组依次公布职业：<br><br>女A：律师 · 女B：新锐编剧 · 女C：外科医生<br><em>你：啦啦队队员</em><br><br>Eric第一个跳起来：'啦啦队？！下次比赛你来场边——'<br><br>李贤在：退役特种兵 · 金泳勋：高级翻译官<br>裴俊英：三星职员 · Eric：足球球星<br><br>'足球球星和啦啦队队员，'女A晃着红酒杯，'很配啊。'她故意看向裴俊英。<br><br>裴俊英没表情。他看着你，眼神里有十个月的回忆在翻涌——他曾经请假去看你比赛，坐在最后一排，你没看见他。",function(){NT(d3c_sms);});}
-function d3c_sms(){
-  sV("匿名短信","DAY 3 · 深夜");ss("✦ 你必须发出一条短信 ✦");
-  G.exTo[3]="女NPC B";sr_("⚡ 前任报告 ⚡<br>你的前任（裴俊英）今晚将短信发给了<br><b>女NPC B</b>");
-  sa([{l:"A. 发给裴俊英：今天也加班吗？",a:function(){d3c_s("jb","今天也加班吗？")}},{l:"B. 发给李贤在：明天几点？",a:function(){d3c_s("hj","明天几点？")}},{l:"C. 发给Eric：友谊赛，我会去。",a:function(){d3c_s("er","友谊赛，我会去。")}}]);}
+  C_("““✦ 心动排名 ✦””","节目组通知：第二轮心动排名。你捏着笔，盯着卡片。<br><br>你没注意到，刚刚金泳勋站在楼梯口，手里是助眠的牛奶和芳香精油。<br>他看见了全部。<br>你去健身房找李贤在，而Eric来找你。<br><br>他转身上楼，轻轻把东西放在你房间门口。",function(){NT(d3c_sms);});}
+function d3c_sms(){sV("匿名短信","DAY 3 · 深夜");ss("““✦ 你必须发出一条短信 ✦””");sb("英雄会保护你的","him");sb("李贞李贞李贞","him");sb("让我多了解你一点吧","him");ss("— 你收到了 3 条 —");G.exTo[3]="女NPC B";sr_("““✦ 前任报告 ✦<br>你的前任（裴俊英）今晚将短信发给了<br><b>女NPC B</b>””");sa([{l:"A. 发给裴俊英：我累了。",a:function(){d3c_s("jb","我累了。")}},{l:"B. 发给李贤在：还练吗？",a:function(){d3c_s("hj","还练吗？")}},{l:"C. 发给Eric：🦮",a:function(){d3c_s("er","🦮")}},{l:"D. 发给金泳勋：和你约会是什么样的呢？",a:function(){d3c_s("yh","和你约会是什么样的呢？")}}]);}
 function d3c_s(to,msg){G.meTo[3]=to;sV("匿名短信","DAY 3 · 深夜");
   if(to==="jb")cA("jb",8);else if(to==="hj")cA("hj",8);else cA("er",8);
-  sb(msg,"her");sn_("发送成功。<br><br>你把手机翻了个面，扣在枕边。");
+  sb(msg,"her");sn_("发送成功。<br><br>你往香薰机里滴了几滴精油，那是今天有人放在你门口的。");
   aPop(gC(),function(){tCheck();sa([{l:"DAY 3 结束 · 进入 DAY 4",a:function(){DT(4,d4);},p:true}]);});}
-
 function d4(){G.day=4;if(G.id==='fa')d4a();else d4c();}
 function d5(){G.day=5;if(G.id==='fa')d5a();else d5c();}
 function d6(){cSoon();}
@@ -391,18 +448,18 @@ function d6(){cSoon();}
 
 
 
-function d4c(){C_("✦ X Room 开放 ✦","第四天。早餐时节目组宣布X Room开放。每对前任分别决定是否进入。若双方都选进入，则安排对谈。其他人不会知道。<br><br>姜宥真手里的马克杯停在半空。朴瑞妍正在翻书，手指停在某一页。李贤在靠在冰箱旁：'有人要进吗？'没人回答。",d4c_rank);}
-function d4c_rank(){C_("✦ 心动排名 ✦","第二轮心动排名。你捏着笔，盯着卡片。<br><br>转身时撞见裴俊英——他站在楼梯口，手里也拿着信封。'你写了吗？''嗯。'<br><br>他从你身边走过。信封擦过你的手臂——很轻，像从前半夜给你盖毯子时那样轻。",d4c_xr);}
-function d4c_xr(){C_("✦ X Room · 你的选择 ✦","节目组通知你：你的X是裴俊英。请选择是否进入X Room。<br><br>你想起了围巾——你织到一半，分手时扔进了垃圾桶。你想起了他请假来看你比赛，坐在最后一排。你想起了十个月前的'分手吧'和'好'。",null,[{l:"A. 进入 X Room",a:"d4c_xr_enter()",p:true},{l:"B. 不进入",a:"d4c_xr_skip()"}]);}
+function d4c(){C_("✦ X Room 开放 ✦","第四天。早餐时节目组宣布X Room开放。每对前任分别决定是否进入。<br><br>这一天终于来了，姜宥真手里的马克杯停在半空。朴瑞妍正在翻书，手指停在那一页。",d4c_rank);}
+function d4c_rank(){d4c_xr();}
+function d4c_xr(){C_("✦ X Room · 你的选择 ✦","节目组通知你：X Room已开启，请选择是否进入X Room。<br><br>你想起了那条无疾而终的围巾，你织到一半，分手时扔进了垃圾桶。<br>你想起了他请假来看你比赛，坐在最后一排。<br>你想起了十个月前充满失望与争吵的分手。<br>可是，你也想起曾经他再忙也来接送你、在任何事上都慢慢引导你的温柔神色。",null,[{l:"A. 进入 X Room",a:"d4c_xr_enter()",p:true},{l:"B. 不进入",a:"d4c_xr_skip()"}]);}
 
 var _ri=0;
-var _rp=['<div style="min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center"><div style="font-size:9px;color:rgba(200,170,130,0.4);letter-spacing:2px;margin-bottom:12px">X Room · 1/4</div><img src="THE_B_HOUSE_assets/SaveClip.App_564259307_17974045274954379_9160089034478819477_n.jpg" style="width:90%;max-height:300px;object-fit:contain;border-radius:10px;border:1px solid rgba(255,255,255,0.08);margin-bottom:16px"><div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:2;max-width:300px;margin-bottom:24px">游乐园。你穿着啦啦队服比耶，他举着棉花糖挡住半张脸。那天他说，你比烟花好看。</div><div class="tap-hint" onclick="_ri=1;_sXr()">点击翻下一张</div></div>','<div style="min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center"><div style="font-size:9px;color:rgba(200,170,130,0.4);letter-spacing:2px;margin-bottom:12px">X Room · 2/4</div><img src="THE_B_HOUSE_assets/SaveClip.App_566320013_17974045307954379_1374720694861699623_n.jpg" style="width:90%;max-height:300px;object-fit:contain;border-radius:10px;border:1px solid rgba(255,255,255,0.08);margin-bottom:16px"><div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:2;max-width:300px;margin-bottom:24px">第一次同居。你抱着这个丑杯子不撒手，他在旁边偷拍。照片角落能看到他的手指。</div><div class="tap-hint" onclick="_ri=2;_sXr()">点击翻下一张</div></div>','<div style="min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center"><div style="font-size:9px;color:rgba(200,170,130,0.4);letter-spacing:2px;margin-bottom:12px">X Room · 3/4</div><img src="THE_B_HOUSE_assets/SaveClip.App_569168006_17974045247954379_90772891512860901_n.jpg" style="width:90%;max-height:300px;object-fit:contain;border-radius:10px;border:1px solid rgba(255,255,255,0.08);margin-bottom:16px"><div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:2;max-width:300px;margin-bottom:24px">他写给你的便利贴。贴在冰箱上，贴了两年。\'记得吃早餐，欧巴去上班了。\'</div><div class="tap-hint" onclick="_ri=3;_sXr()">点击翻下一张</div></div>','<div style="min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center"><div style="font-size:9px;color:rgba(200,170,130,0.4);letter-spacing:2px;margin-bottom:12px">X Room · 4/4</div><img src="THE_B_HOUSE_assets/SaveClip.App_650905804_17967478097882626_5796434206499080582_n.jpg" style="width:90%;max-height:300px;object-fit:contain;border-radius:10px;border:1px solid rgba(255,255,255,0.08);margin-bottom:16px"><div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:2;max-width:300px;margin-bottom:24px">围巾。你织到一半分手，扔进了垃圾桶。他捡回来织完了。针脚比你的丑很多。但他织完了。</div><div class="tap-hint" onclick="d4c_xr_final()">进入深夜短信</div></div>'];
+var _rp=['<div style="min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center"><div style="font-size:9px;color:rgba(200,170,130,0.4);letter-spacing:2px;margin-bottom:12px">X Room · 1/4</div><img src="THE_B_HOUSE_assets/SaveClip.App_564259307_17974045274954379_9160089034478819477_n.jpg" style="width:90%;max-height:300px;object-fit:contain;border-radius:10px;border:1px solid rgba(255,255,255,0.08);margin-bottom:16px"><div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:2;max-width:300px;margin-bottom:24px">2024年7月4日，美国独立日。你随队在纽约表演，深夜结束后却发现Jacob站在你驻地的宿舍楼下。为了这个惊喜，他连着好几晚没睡，坐长途飞机来看你。也是在那天，你们一起领养了这只狗狗，板栗。</div><div class="tap-hint" onclick="_ri=1;_sXr()">点击翻下一张</div></div>','<div style="min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center"><div style="font-size:9px;color:rgba(200,170,130,0.4);letter-spacing:2px;margin-bottom:12px">X Room · 2/4</div><img src="THE_B_HOUSE_assets/SaveClip.App_566320013_17974045307954379_1374720694861699623_n.jpg" style="width:90%;max-height:300px;object-fit:contain;border-radius:10px;border:1px solid rgba(255,255,255,0.08);margin-bottom:16px"><div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:2;max-width:300px;margin-bottom:24px">第一次同居。他抱着板栗不撒手，你在旁边偷拍。这大概就是“初为人父”的心情吧，你特别期待以后属于你们真正的孩子。</div><div class="tap-hint" onclick="_ri=2;_sXr()">点击翻下一张</div></div>','<div style="min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center"><div style="font-size:9px;color:rgba(200,170,130,0.4);letter-spacing:2px;margin-bottom:12px">X Room · 3/4</div><img src="THE_B_HOUSE_assets/SaveClip.App_569168006_17974045247954379_90772891512860901_n.jpg" style="width:90%;max-height:300px;object-fit:contain;border-radius:10px;border:1px solid rgba(255,255,255,0.08);margin-bottom:16px"><div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:2;max-width:300px;margin-bottom:24px">“李贞与Jacob永远在一起”、“拥有Jacob的李贞世上谁也不需要”...这些照片背后曾经藏了你多少没说出口的爱意与心事，再多的龃龉也抹不去当初的幸福...你们曾经是真心想和彼此走下去的。</div><div class="tap-hint" onclick="_ri=3;_sXr()">点击翻下一张</div></div>','<div style="min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center"><div style="font-size:9px;color:rgba(200,170,130,0.4);letter-spacing:2px;margin-bottom:12px">X Room · 4/4</div><img src="THE_B_HOUSE_assets/SaveClip.App_650905804_17967478097882626_5796434206499080582_n.jpg" style="width:90%;max-height:300px;object-fit:contain;border-radius:10px;border:1px solid rgba(255,255,255,0.08);margin-bottom:16px"><div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:2;max-width:300px;margin-bottom:24px">那天下午他陪你去手工坊学了织围巾。你织到一半分手，扔进了垃圾桶。没想到，却在他那里织完了。</div><div class="tap-hint" onclick="d4c_xr_final()">进入深夜短信</div></div>'];
 function _sXr(){V(_rp[_ri]);}
 function d4c_xr_enter(){_ri=0;_sXr();}
 function d4c_xr_final(){NT(d4c_sms);}
-function d4c_xr_skip(){C_("✦ 走廊 ✦","你没有进入X Room。经过裴俊英的门口，门缝里透出灯光。你也不知道他有没有进去。也许他也没有。那扇门关着。你不确定自己是不是松了一口气。",function(){NT(d4c_sms);});}
-function d4c_sms(){sV("匿名短信","DAY 4 · 深夜");ss("✦ 你必须发出一条短信 ✦");G.exTo[4]="女NPC B";sr_("✦ 前任报告 ✦<br>你的前任（裴俊英）今晚将短信发给了<br><b>女NPC B</b>");sa([{l:"A. 发给裴俊英——围巾我带走了",a:function(){d4c_s("jb","围巾……我带走了。")}},{l:"B. 发给李贤在——明天七点，健身房",a:function(){d4c_s("hj","明天七点，我准时。")}},{l:"C. 发给Eric——庆祝动作，教我吧",a:function(){d4c_s("er","庆祝动作，教我吧。")}}]);}
-function d4c_s(to,msg){G.meTo[4]=to;sV("匿名短信","DAY 4 · 深夜");if(to==="jb")cA("jb",8);else if(to==="hj")cA("hj",8);else cA("er",5);sb(msg,"her");sn_("发送成功。<br><br>你把手机翻了个面，扣在枕边。");aPop(gC(),function(){tCheck();sa([{l:"DAY 4 结束 · 进入 DAY 5",a:function(){DT(5,d5);},p:true}]);});}
+function d4c_xr_skip(){C_("✦ 走廊 ✦","你没有进入X Room。经过裴俊英的门口，门缝里透出灯光。你也不知道他有没有进去，他对这段感情，对你，还有留恋吗？那扇门关着，也许你永远不会知道答案。",function(){NT(d4c_sms);});}
+function d4c_sms(){sV("匿名短信","DAY 4 · 深夜");sb("心情不好的话，来找我聊聊天？","him");sb("明天下班去南山塔走走吗？","him");ss("— 你收到了 2 条 —");ss("✦ 你必须发出一条短信 ✦");G.exTo[4]="女NPC B";sr_("✦ 前任报告 ✦<br>你的前任（裴俊英）今晚将短信发给了<br><b>女NPC B</b>");sa([{l:"A. 发给裴俊英：要..重新认识下吗？",a:function(){d4c_s("jb","要..重新认识下吗？")}},{l:"B. 发给李贤在：教教我鸡胸肉的好吃做法",a:function(){d4c_s("hj","教教我鸡胸肉的好吃做法")}},{l:"C. 发给Eric：足球宝贝",a:function(){d4c_s("er","足球宝贝")}},{l:"D. 发给金泳勋：想知道你的绰号",a:function(){d4c_s("yh","想知道你的绰号")}}]);}
+function d4c_s(to,msg){G.meTo[4]=to;sV("匿名短信","DAY 4 · 深夜");if(to==="jb")cA("jb",8);else if(to==="hj")cA("hj",8);else if(to==="er")cA("er",5);else cA("yh",5);sb(msg,"her");sn_("发送成功。<br><br>你把满腹愁绪写进日记里，不知不觉接近天明。");aPop(gC(),function(){tCheck();sa([{l:"DAY 4 结束 · 进入 DAY 5",a:function(){DT(5,d5);},p:true}]);});}
 
 function d5c(){C_("✦ 晨间镜头 ✦","第五天。猜前任环节。<br><br>你六点五十到健身房，李贤在已经在举铁。他看见你，杠铃差点脱手。<br><br>'……不是七点？''我准时。你六点到的。'<br><br>他耳尖红了，把燕麦奶递给你。你们坐在地板上喝着燕麦奶。他忽然说：'李贞，我今天猜前任，会猜裴俊英。你们的眼神——像烧过又灭掉的火。但我还是会选你。不管你是不是他的前任。'",d5c_guess);}
 function d5c_guess(){C_("✦ 任务 · 猜前任 ✦","晚上，节目组公布每位嘉宾的猜测。女A猜你的前任是Eric，女B猜李贤在，女C猜金泳勋。<br><br>李贤在在卡片上写了裴俊英。只写了一行字：'他给她煎蛋的样子，像做过一千次。'<br><br>Eric也写了裴俊英。他画了一只狗和一个煎蛋。<br><br>金泳勋写的是李贤在。'健身房的气氛。只有前任才能制造那种沉默。'<br><br>全部公开之后，李贤在看了你一眼。那一秒里有很多东西——他猜对了，但这不是他想猜对的答案。",d5c_reveal);}
