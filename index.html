@@ -102,6 +102,12 @@ body{background:#0a0a12;display:flex;justify-content:center;align-items:center;m
 .f-body{font-size:11px;color:rgba(255,255,255,0.45);line-height:1.7;letter-spacing:0.3px}
 .f-divider{text-align:center;padding:10px 0;font-size:9px;color:rgba(255,255,255,0.08);letter-spacing:2px}
 .f-views{font-size:9px;color:rgba(255,255,255,0.15);text-align:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.03);margin-bottom:8px}
+
+.save-wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 20px;text-align:center}
+.save-title{font-size:14px;color:#d8ccb8;letter-spacing:2px;font-weight:300;margin-bottom:16px}
+.save-code,.save-input{width:100%;max-width:300px;min-height:50px;background:#111119;border:1px solid rgba(200,170,130,0.3);border-radius:10px;color:rgba(255,255,255,0.6);font-size:11px;padding:12px;resize:none;text-align:center;word-break:break-all;margin-bottom:10px;line-height:1.6;font-family:monospace}
+.save-hint{font-size:10px;color:rgba(255,255,255,0.2);margin-bottom:20px;line-height:1.6}
+.save-err{font-size:10px;color:#c08080;margin-bottom:8px;display:none}
 </style>
 </head>
 <body>
@@ -126,7 +132,7 @@ function cA(id,d){if(!G.turn[id]){G.aff[id]=Math.max(0,Math.min(100,G.aff[id]+d)
 function tCheck(){var ms=[];DATA[G.id].ms.forEach(function(m){if(m.x||G.turn[m.id])return;var h=G.affH[m.id];if(h.length>=3&&h[h.length-1]<=h[h.length-2]&&h[h.length-2]<=h[h.length-3]){G.turn[m.id]=true;ms.push(m.e+' '+m.n+' 开始注意其他女嘉宾');}});return ms;}
 function gC(){var cs=[];DATA[G.id].ms.forEach(function(m){var h=G.affH[m.id];cs.push({id:m.id,d:h.length>=2?h[h.length-1]-h[h.length-2]:0});});return cs;}
 function aPop(cs,fn){var h='<div class="aff-title">✦ 好感度变化 ✦</div>';var any=false;cs.forEach(function(c){if(c.d===0)return;any=true;var m=Mn(c.id);h+='<div class="aff-row"><span class="aff-name">'+m.e+' '+m.n+'</span><span class="aff-change '+(c.d>0?'up':'down')+'">'+(c.d>0?'+':'')+c.d+'</span><span style="font-size:10px;color:rgba(255,255,255,0.2)">'+AL(G.aff[c.id])+'</span></div>';});if(!any)h+='<div style="font-size:10px;color:rgba(255,255,255,0.15)">好感度无明显变化</div>';h+='<div class="aff-tap">点击继续</div>';AP.innerHTML=h;AO.style.display='flex';AP.onclick=function(){AO.style.display='none';if(fn)fn();};}
-function DT(n,fn){G._cb=fn;V('<div class="day-title-wrap" onclick="G._cb()"><div class="day-num">DAY '+n+'</div><div class="day-divider"></div><div class="day-sub">'+(n===1?'第一天 · 入住日':n===2?'第二天 · 暧昧萌芽':n===3?'第三天 · 匿名约会':'第'+n+'天')+'</div><div class="day-tap">点击任意处继续</div><div class="day-credit">创作by抖音 妈妈我真有首尔病<br>持续施工中 关注作者以免错失新剧情</div></div>');}
+function DT(n,fn){G._cb=fn;V('<div class="day-title-wrap" onclick="G._cb()"><div class="day-num">DAY '+n+'</div><div class="day-divider"></div><div class="day-sub">'+(n===1?'第一天 · 入住日':n===2?'第二天 · 暧昧萌芽':n===3?'第三天 · 匿名约会':'第'+n+'天')+'</div><div class="day-tap">点击任意处继续</div><div style="margin-bottom:10px"><span class="btn" onclick="event.stopPropagation();expS()" style="font-size:9px;padding:6px 14px;border-color:rgba(255,255,255,0.06);color:rgba(255,255,255,0.2)">💾 导出存档</span></div><div class="day-credit">创作by抖音 妈妈我真有首尔病<br>持续施工中 关注作者以免错失新剧情</div></div>');}
 
 var _glI=0;var _glP=[];var _glC=[];var _glFn=null;
 function _glInit(photos,captions,nextFn){_glI=0;_glP=photos;_glC=captions;_glFn=nextFn;_glShow();}
@@ -232,9 +238,37 @@ function showForum(day,rt,fn){
   V(h);
 }
 
+function expS(){
+  var s={id:G.id,day:G.day+1,aff:G.aff};
+  var code=btoa(encodeURIComponent(JSON.stringify(s)));
+  var h='<div class="save-wrap"><div class="save-title">💾 导出存档</div>';
+  h+='<textarea class="save-code" readonly onclick="this.select()">'+code+'</textarea>';
+  h+='<div class="save-hint">复制上方存档码发到其他设备<br>粘贴即可恢复进度</div>';
+  h+='<span class="btn" onclick="impS()">📥 导入存档</span>';
+  h+='<span class="btn" style="margin-top:8px" onclick="G._cb?G._cb():showRules()">返回</span></div>';
+  V(h);
+}
+function impS(){
+  var h='<div class="save-wrap"><div class="save-title">📥 导入存档</div>';
+  h+='<textarea class="save-input" id="impCode" placeholder="粘贴存档码..."></textarea>';
+  h+='<div class="save-err" id="impErr">存档码无效</div>';
+  h+='<span class="btn primary" onclick="_doImp()">确认</span>';
+  h+='<span class="btn" style="margin-top:8px" onclick="G._cb?G._cb():showRules()">返回</span></div>';
+  V(h);
+}
+function _doImp(){
+  var el=document.getElementById('impCode');var er=document.getElementById('impErr');
+  try{
+    var s=JSON.parse(decodeURIComponent(atob(el.value.trim())));
+    if(!s||!s.id||!s.aff){throw 0;}
+    G.id=s.id;G.day=s.day;G.aff=s.aff;iAff();
+    DT(s.day,window['d'+s.day]);
+  }catch(e){er.style.display='block';}
+}
+
 // SCREENS
 function showRules(){
-  V('<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:30px 24px;text-align:center"><div style="font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.15);margin-bottom:8px">换乘恋爱 · 酸涩版</div><div style="font-size:20px;color:#d8ccb8;font-weight:300;letter-spacing:4px;margin-bottom:4px">THE B HOUSE</div><div style="font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:3px;margin-bottom:28px">4 MEN · 4 WOMEN · 10 DAYS</div><div style="max-width:300px;text-align:left;font-size:12px;color:rgba(255,255,255,0.4);line-height:2.2"><p>✈️ <b style="color:rgba(255,255,255,0.6)">你和你的前任，都是嘉宾。</b>你们分手了，但住在同一栋房子里。不能表现出你们认识。</p><p style="margin-top:12px">📱 <b style="color:rgba(255,255,255,0.6)">每晚一条匿名短信。</b>你可以发给他，也可以不。但你总会收到一条通知：「你的前任将短信发给了______」</p><p style="margin-top:12px">👥 <b style="color:rgba(255,255,255,0.6)">他不是只看着你。</b>三位女嘉宾会主动。三位新男嘉宾也在靠近你。</p><p style="margin-top:12px">🎯 <b style="color:rgba(255,255,255,0.6)">Day 10，最终选择。</b>走向一个人，或不走向任何人。</p></div><div style="font-size:11px;color:rgba(200,150,100,0.4);line-height:1.8;margin:20px 0;font-style:italic">第一天。他收到了你的前任通知。<br>你也收到了他的。<br><em style="color:#c8a870">他发给了别人。</em></div><span class="btn primary" onclick="showEndings()">继续</span></div>');
+  V('<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:30px 24px;text-align:center"><div style="font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.15);margin-bottom:8px">换乘恋爱 · 酸涩版</div><div style="font-size:20px;color:#d8ccb8;font-weight:300;letter-spacing:4px;margin-bottom:4px">THE B HOUSE</div><div style="font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:3px;margin-bottom:28px">4 MEN · 4 WOMEN · 10 DAYS</div><div style="max-width:300px;text-align:left;font-size:12px;color:rgba(255,255,255,0.4);line-height:2.2"><p>✈️ <b style="color:rgba(255,255,255,0.6)">你和你的前任，都是嘉宾。</b>你们分手了，但住在同一栋房子里。不能表现出你们认识。</p><p style="margin-top:12px">📱 <b style="color:rgba(255,255,255,0.6)">每晚一条匿名短信。</b>你可以发给他，也可以不。但你总会收到一条通知：「你的前任将短信发给了______」</p><p style="margin-top:12px">👥 <b style="color:rgba(255,255,255,0.6)">他不是只看着你。</b>三位女嘉宾会主动。三位新男嘉宾也在靠近你。</p><p style="margin-top:12px">🎯 <b style="color:rgba(255,255,255,0.6)">Day 10，最终选择。</b>走向一个人，或不走向任何人。</p></div><div style="font-size:11px;color:rgba(200,150,100,0.4);line-height:1.8;margin:20px 0;font-style:italic">第一天。他收到了你的前任通知。<br>你也收到了他的。<br><em style="color:#c8a870">他发给了别人。</em></div><span class="btn primary" onclick="showEndings()">继续</span><span class="btn" onclick="impS()" style="margin-top:8px">📥 导入存档</span></div>');
 }
 
 function showEndings(){
@@ -435,7 +469,7 @@ function d4(){G.day=4;if(G.id==='fa')d4a();else d4c();}
 function d5(){G.day=5;if(G.id==='fa')d5a();else d5c();}
 function d6(){cSoon();}
 function cSoon(){
-  V('<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:30px;text-align:center"><div style="font-size:40px;margin-bottom:16px">🏠</div><div style="font-size:14px;color:#d8ccb8;letter-spacing:3px;font-weight:300;margin-bottom:8px">THE B HOUSE</div><div style="font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:2px;margin-bottom:20px">DEMO · DAY 1-3</div><div style="font-size:11px;color:rgba(255,255,255,0.3);line-height:2;max-width:280px">空姐线 DAY1-3 · 空姐线 DAY1-5 · 啦啦队线 DAY1-5<br>全部实装完成<br>DAY 6-10 即将到来<br>—— 敬请期待 ——</div><span class="btn primary" style="margin-top:20px" onclick="showRules()">重新开始</span><span class="btn" style="margin-top:8px" onclick="showIdSelect()">换身份</span></div>');
+  V('<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:30px;text-align:center"><div style="font-size:40px;margin-bottom:16px">🏠</div><div style="font-size:14px;color:#d8ccb8;letter-spacing:3px;font-weight:300;margin-bottom:8px">THE B HOUSE</div><div style="font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:2px;margin-bottom:20px">DEMO · DAY 1-3</div><div style="font-size:11px;color:rgba(255,255,255,0.3);line-height:2;max-width:280px">空姐线 DAY1-3 · 空姐线 DAY1-5 · 啦啦队线 DAY1-5<br>全部实装完成<br>DAY 6-10 即将到来<br>—— 敬请期待 ——</div><span class="btn primary" style="margin-top:20px" onclick="showRules()">重新开始</span><span class="btn" style="margin-top:8px" onclick="showIdSelect()">换身份</span><span class="btn" style="margin-top:8px" onclick="expS()">💾 导出存档</span><span class="btn" style="margin-top:8px" onclick="impS()">📥 导入存档</span></div>');
 }
 
 showRules();
