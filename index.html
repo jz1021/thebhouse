@@ -467,7 +467,6 @@ function d3c_s(to,msg){G.meTo[3]=to;sV("匿名短信","DAY 3 · 深夜");
   aPop(gC(),function(){tCheck();showForum(3,"c",function(){DT(4,d4);});});}
 function d4(){G.day=4;if(G.id==='fa')d4a();else d4c();}
 function d5(){G.day=5;if(G.id==='fa')d5a();else d5c();}
-function d6(){cSoon();}
 function cSoon(){
   V('<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:30px;text-align:center"><div style="font-size:40px;margin-bottom:16px">🏠</div><div style="font-size:14px;color:#d8ccb8;letter-spacing:3px;font-weight:300;margin-bottom:8px">THE B HOUSE</div><div style="font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:2px;margin-bottom:20px">DEMO · DAY 1-3</div><div style="font-size:11px;color:rgba(255,255,255,0.3);line-height:2;max-width:280px">空姐线 DAY1-3 · 空姐线 DAY1-5 · 啦啦队线 DAY1-5<br>全部实装完成<br>DAY 6-10 即将到来<br>—— 敬请期待 ——</div><span class="btn primary" style="margin-top:20px" onclick="showRules()">重新开始</span><span class="btn" style="margin-top:8px" onclick="showIdSelect()">换身份</span><span class="btn" style="margin-top:8px" onclick="expS()">💾 导出存档</span><span class="btn" style="margin-top:8px" onclick="impS()">📥 导入存档</span></div>');
 }
@@ -504,7 +503,6 @@ function d5a_s(to,msg){G.meTo[5]=to;sV("匿名短信","DAY 5 · 深夜");if(to==
 
 function d4(){G.day=4;if(G.id==='fa')d4a();else d4c();}
 function d5(){G.day=5;if(G.id==='fa')d5a();else d5c();}
-function d6(){cSoon();}
 
 
 
@@ -530,7 +528,7 @@ function d5c_s(to,msg){G.meTo[5]=to;sV("匿名短信","DAY 5 · 深夜");if(to==
 
 
 function d6(){G.day=6;if(G.id==='fa')d6a();else cSoon();}
-function d7(){cSoon();}
+function d7(){G.day=7;if(G.id==='fa')d7a();else cSoon();}
 
 // ===== DAY 6 AIRLINE =====
 function d6a(){
@@ -566,10 +564,51 @@ function d6a_sms(){
   G.exTo[6]="你";sr_("✦ 前任报告 ✦<br>你的前任（李柱延）今晚将短信发给了<br><b>你</b>");
   sn_("连续第三天。");
   sa([{l:"A. 发给李柱延：多笑笑吧",a:function(){d6a_s("jy","多笑笑吧")}},{l:"B. 发给裴俊英：教授nim",a:function(){d6a_s("jb","教授nim")}},{l:"C. 发给李贤在：欧巴今年奖金很多吧？",a:function(){d6a_s("hj","欧巴今年奖金很多吧？")}}]);}
+// ===== DAY 7 AIRLINE · 回忆餐厅 =====
+function d7a(){
+  CP('✦ 任务 · 回忆餐厅 ✦',[
+    '节目组宣布新环节：回忆餐厅。<br><br>规则很简单：每张餐卷背后，是一位对应男嘉宾；女嘉宾盲选餐券，选中谁的券，就和谁约会。<br>有意思的是，用餐场所是这位男嘉宾的X决定的、一个与X拥有共同回忆的地点。',
+    '"等一下——"姜宥真举手，"那会不会选到自己的前任？"<br><br>PD摇头。"那不符合设置回忆餐厅的初衷。"<br><br>徐敏荷扯了扯嘴角。朴瑞妍则无奈地低头微笑。<br><br>"那就猜拳决定吧，"你站起来，"这样公平些。"',
+    '你赢了。<br>你第一个走向餐桌，上面摆着四张餐券，背面朝上。每张写着不同的数字：<br><br><em>1；5；9；12，以及对应地点。</em><br><br>你看到数字1与对应的地点，意识到节目组是通过男嘉宾生日的月份确定的序号。<br>这样也能避免不小心选到X的状况。<br><br>你伸手——'
+  ],d7a_choice);}
+function d7a_choice(){
+  C_('✦ 选择餐券 ✦','不能选前任，而Eric与他的前任似乎也已经锁死。<br>所以实际上你的选择也只有李贤在和Jacob。<br><br>数字5和数字9。你的直觉告诉你，这两张里有一张属于Jacob，一张属于李贤在。',null,[
+    {l:'5 — 乐天世界溜冰场',a:"d7a_p5()"},
+    {l:'9 — 仁川海水浴场',a:"d7a_p9()"}
+  ]);}
+
+function d7a_p5(){
+  CP('✦ 回忆餐厅 · 乐天世界 ✦',[
+    '你翻开餐券——5号。约会对象：<em>裴俊英（Jacob）</em>。<br><br>指令卡上写着：<em>"请在乐园内炸鸡店就餐。"</em> — 来自Jacob的前任。<br><br>你们到了乐天世界的溜冰场。Jacob换好冰鞋的动作很熟练，系鞋带的手法一看就不是第一次。<br><br>"我来自多伦多，"他解释，"冬天很长，冰场是第二个家。"<br><br>你平衡感一般，才滑两步就差点摔倒——他绅士地牵起你的手，温热的掌心贴着你微凉的手腕。',
+    '"稍微放松些，膝盖微弯。你做得很好～"<br><br>他的声音很低，像怕打扰冰面上其他的初学者。你在他掌心下慢慢找到了节奏，一圈，两圈——冰刃划过冰面的声音像某种古老的乐器。<br><br>你觉得他真的像冰雪中洁白纯净的天使。',
+    '晚餐时间。指令卡上的炸鸡店在乐园角落。Jacob听到这个指令，愣住了。<br>他的眼睛在暖色灯光下看不真切，但你捕捉到了一滴晶莹的泪滑过他的脸颊。<br><br>他笑了笑认真对你解释，曾经他会帮他的X把炸鸡全都去骨剥好，这样她就不会吃到脸上了。<br>你点点头，内心除了遗憾的唏嘘，也有些许落寞。'
+  ],d7a_sms);}
+
+function d7a_p9(){
+  CP('✦ 回忆餐厅 · 仁川海水浴场 ✦',[
+    '你翻开餐券——9号。约会对象：<em>李贤在</em>。<br><br>指令卡上是一片空白，她什么也没有要求。<br><br>仁川的海在秋天格外安静。<br>更衣室前，李贤在已经换上沙滩裤，他胳膊练得漂亮，露出肌肉分明的上半身。<br><br>冲浪的时候，你不小心摔进海里三次，每次都被他捞起来。<br>傍晚泡温泉、蒸桑拿，雾气模糊了他的轮廓，让你有一瞬间觉得，他不是那个偶尔会咄咄逼人的大厂精英，只是一个会调皮、有点累了的小熊。',
+    '烛光晚餐订在度假村酒店的露台，红酒在醒酒器里轻轻震荡，又被优雅地倒入你的高脚杯。<br><br>直到红酒瓶见底，贤在对你道歉，然后向PD们提出了他思考了一天的问题："我和X..从来没有来过这里。连烛光晚餐也很少有时间一起吃。我想知道——为什么回忆餐厅约会的地点是这里？"<br><br>PD们互相对视，谁也不愿意先开口。',
+    '最终，资历最老的前辈开口了：<br><br>"您的X认为，比起充满了彼此回忆的地方，更愿意让常常辛苦忙碌工作的您有机会好好地休息一天。"<br><br>李贤在没说话。他看着窗外漆黑的海，眼睛里有光晃动。<br><br>你想起那句话——<em>比起让你带着愧疚与后悔想起我，我更愿意你在阳光与海浪中尽情再做一次孩子。</em>'
+  ],d7a_sms);}
+
+function d7a_sms(){NT(d7a_sms2);}
+function d7a_sms2(){
+  sV("匿名短信","DAY 7 · 深夜");
+  sb("今天很愉快^^","him");sb("开心，但不要太开心就好了","him");
+  ss("— 你收到了 2 条 —");
+  G.exTo[7]="你";sr_("✦ 前任报告 ✦<br>你的前任（李柱延）今晚将短信发给了<br><b>你</b>");
+  sn_("今天的约会让你五味杂陈。<br>你知道，在首尔市的另一端，李柱延也和另一个女人进行着你们曾做过无数次的约会。");
+  ss("✦ 你要发信息给谁 ✦");
+  sa([{l:"A. 发给李柱延：一直在想你呢",a:function(){d7a_s("jy","一直在想你呢")}},{l:"B. 发给李贤在：☀️🌊 度假中",a:function(){d7a_s("hj","☀️🌊 度假中")}},{l:"C. 发给裴俊英：你让冰天雪地也变得温暖",a:function(){d7a_s("jb","你让冰天雪地也变得温暖")}}]);}
+function d7a_s(to,msg){G.meTo[7]=to;sV("匿名短信","DAY 7 · 深夜");
+  if(to==="jy")cA("jy",5);else if(to==="hj")cA("hj",8);else cA("jb",8);
+  sb(msg,"her");sn_("发送成功。<br><br>你拉起被子，决心睡到中午十二点。");
+  aPop(gC(),function(){tCheck();sa([{l:"DAY 7 结束 · 进入 DAY 8",a:function(){DT(8,cSoon);},p:true}]);});}
+
 function d6a_s(to,msg){G.meTo[6]=to;sV("匿名短信","DAY 6 · 深夜");
   if(to==="jy")cA("jy",5);else if(to==="jb")cA("jb",5);else cA("hj",5);
   sb(msg,"her");sn_("发送成功。<br><br>你关掉手机，今晚会梦到照片里的那个人吗？");
-  aPop(gC(),function(){tCheck();sa([{l:"DAY 6 结束 · 进入 DAY 7",a:function(){DT(7,cSoon);},p:true}]);});}
+  aPop(gC(),function(){tCheck();sa([{l:"DAY 6 结束 · 进入 DAY 7",a:function(){DT(7,d7);},p:true}]);});}
 
 </script>
 </body>
